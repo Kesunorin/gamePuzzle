@@ -19,13 +19,13 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
     int x = 0;
     int y = 0;
 
-    //随机图片
+    /*//随机图片
     private static final int IMAGE_NUMBER = 3;
     Random rd = new Random();
-    int imgNum = rd.nextInt(IMAGE_NUMBER);
+    int imgNum = rd.nextInt(IMAGE_NUMBER);*/
 
     //记录图片路径
-    String imgPath = "anime" + imgNum + "\\";
+    String imgPath = "anime0\\";
     //记录背景图路径
     final String BG_PATH = "UI\\background.jpg";
     //记录胜利图路径
@@ -49,6 +49,13 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
     //创建菜单上面的两个选项
     JMenu functionJMenu = new JMenu("功能");
     JMenu aboutJMenu = new JMenu("关于");
+
+    JMenu changeImgJMenu = new JMenu("更换图片");
+
+    JMenuItem anime0Item = new JMenuItem("图片0");
+    JMenuItem anime1Item = new JMenuItem("图片1");
+    JMenuItem anime2Item = new JMenuItem("图片2");
+
     //创建选项拉取的条目
     JMenuItem replayItem = new JMenuItem("重启游戏");
     JMenuItem reLoginItem = new JMenuItem("重新登录");
@@ -187,11 +194,21 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         reLoginItem.addActionListener(this);
         closeItem.addActionListener(this);
         aboutItem.addActionListener(this);
+        anime0Item.addActionListener(this);
+        anime1Item.addActionListener(this);
+        anime2Item.addActionListener(this);
 
         //选项添加条目
+        functionJMenu.add(changeImgJMenu);
         functionJMenu.add(replayItem);
         functionJMenu.add(reLoginItem);
         functionJMenu.add(closeItem);
+
+
+        changeImgJMenu.add(anime0Item);
+        changeImgJMenu.add(anime1Item);
+        changeImgJMenu.add(anime2Item);
+
 
         aboutJMenu.add(aboutItem);
 
@@ -332,9 +349,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         //执行事件
         if(e.getSource() == replayItem){
 //            System.out.println("点击了重新开始");
-            initData();
-            step = 0;
-            initImage();
+            rePlay();
         }
         else if(e.getSource() == reLoginItem){
             this.setVisible(false);
@@ -364,6 +379,25 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             //弹窗显示
             about.setVisible(true);
         }
+        else if(e.getSource() == anime0Item){
+            imgPath = "anime0\\";
+            rePlay();
+        }
+        else if(e.getSource() == anime1Item){
+            imgPath = "anime1\\";
+            rePlay();
+        }
+        else if(e.getSource() == anime2Item){
+            imgPath = "anime2\\";
+            rePlay();
+        }
 
+
+    }
+
+    private void rePlay(){
+        initData();
+        step = 0;
+        initImage();
     }
 }
