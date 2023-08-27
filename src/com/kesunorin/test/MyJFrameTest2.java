@@ -3,9 +3,11 @@ package com.kesunorin.test;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class MyJFrameTest extends JFrame implements ActionListener {
-    public MyJFrameTest(){
+public class MyJFrameTest2 extends JFrame implements MouseListener {
+    public MyJFrameTest2(){
         this.setSize(600,600);
         //标题
         this.setTitle("标题");
@@ -19,7 +21,8 @@ public class MyJFrameTest extends JFrame implements ActionListener {
         this.setLayout(null);
         JButton jtb1 = new JButton("按钮");
         jtb1.setBounds(0,2,100,50);
-        jtb1.addActionListener(this);
+        jtb1.addMouseListener(this);
+
         this.getContentPane().add(jtb1);
 
 
@@ -29,8 +32,29 @@ public class MyJFrameTest extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+
     @Override
-    public void actionPerformed(ActionEvent e) {
-        System.out.println("事件执行");
+    public void mouseClicked(MouseEvent e) {
+        System.out.println("单击");
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        System.out.println("长按");
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        System.out.println("松开");
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        System.out.println("划入");
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        System.out.println("划出");
     }
 }
